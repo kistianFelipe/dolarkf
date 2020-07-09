@@ -11,6 +11,7 @@ const Grafico = (props) => {
     renderGrafico = null;
     delete document.getElementById("#mycanvas");
     delete document.getElementById("#mycanvas2");
+    //
     if (props.datos.length !== 0) {
       setTipo(props.tipo);
       setRender(true);
