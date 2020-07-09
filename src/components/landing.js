@@ -64,7 +64,7 @@ const Landing = () => {
     <Container>
       <Header as="h2" color="blue" icon textAlign="center">
         <Icon loading name="money bill alternate outline" circular />
-        <Header.Content>Valor histórico del dolars</Header.Content>
+        <Header.Content>Valor histórico del dolar</Header.Content>
       </Header>
       <Grid inverted divided columns="equal">
         <Grid.Row centered textAlign="center">
