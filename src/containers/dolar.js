@@ -41,7 +41,6 @@ const Dolar = (props) => {
         });
         setResultado(busqueda);
       } else {
-        console.log("hay que buscar en la api");
         conectaApi(formateaFecha(fechaInicio));
       }
     }
@@ -59,7 +58,6 @@ const Dolar = (props) => {
     const apiKey = "9c84db4d447c80c74961a72245371245cb7ac15f";
     let url = null;
     if (primeraCarga === true) {
-      console.log("fetch primera carga");
       url = `https://api.sbif.cl/api-sbifv3/recursos_api/dolar/periodo/${anoFinal}/${mes}/dias_i/${dia}/${ano}/${mes}/dias_f/${dia}?apikey=${apiKey}&formato=json`;
       fetch(url)
         .then((response) => response.json())
@@ -75,7 +73,6 @@ const Dolar = (props) => {
       ano = primeraCarga.slice(0, 4);
       const mesI = primeraCarga.slice(4, 6);
       const diaI = primeraCarga.slice(6, 8);
-      console.log("fetch actualizacion");
       url = `https://api.sbif.cl/api-sbifv3/recursos_api/dolar/periodo/${ano}/${mesI}/dias_i/${diaI}/${anoHasta}/${mesHasta}/dias_f/${diaHasta}?apikey=${apiKey}&formato=json`;
       fetch(url)
         .then((response) => response.json())
@@ -85,13 +82,11 @@ const Dolar = (props) => {
   };
 
   useEffect(() => {
-    console.log("mounted");
     const primeraCarga = true;
     conectaApi(primeraCarga);
   }, []); //component did mount
 
   useEffect(() => {
-    console.log("updated");
     let actualiza = false;
     if (resultado) actualiza = true;
     calculaPromedio(props.fechaInicio, props.fechaFinal, actualiza);

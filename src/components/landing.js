@@ -11,22 +11,32 @@ import {
 } from "semantic-ui-react";
 
 const Landing = () => {
-  const modificaFechaFinal = (event) => {
-    setFechaFinal(event.target.value);
-  };
-  const modificaFechaInicio = (event) => {
-    setFechaInicio(event.target.value);
-    setDisableFechaFinal(false);
-  };
   const [deshabilitado, setDeshabilitado] = useState(true);
   const [fechaInicio, setFechaInicio] = useState(null);
   const [fechaFinal, setFechaFinal] = useState(null);
   const [grafico, setGrafico] = useState("barras");
   const [disableFechaFinal, setDisableFechaFinal] = useState(true);
+  const [maxFechaInicio, setMaxFechaInicio] = useState(
+    new Date(Date.now() - 2 * 86400000).toISOString().split("T")[0]
+  );
+  const [maxFechaFin, setMaxFechaFin] = useState(
+    new Date(Date.now() - 86400000).toISOString().split("T")[0]
+  );
+  const [minFechaInicio, setMinFechaInicio] = useState("2000-01-01");
+  const [minFechaFin, setMinFechaFin] = useState("2000-01-01");
+
+  const modificaFechaFinal = (event) => {
+    setMaxFechaInicio(event.target.value);
+    setFechaFinal(event.target.value);
+  };
+  const modificaFechaInicio = (event) => {
+    setFechaInicio(event.target.value);
+    setMinFechaFin(event.target.value);
+    setDisableFechaFinal(false);
+  };
 
   useEffect(() => {
     const dateDiff = new Date(fechaFinal) - new Date(fechaInicio);
-    if (fechaFinal && new Date(fechaFinal) - new Date() > 0) alert("aweonao");
     if (dateDiff > 0) {
       setDeshabilitado(false);
     } else {
@@ -49,12 +59,7 @@ const Landing = () => {
     { key: "barras", text: "barras", value: "barras" },
     { key: "puntos", text: "puntos", value: "puntos" },
   ];
-  const maxFechaInicio = new Date(Date.now() - 2 * 86400000)
-    .toISOString()
-    .split("T")[0];
-  const maxFechaFin = new Date(Date.now() - 86400000)
-    .toISOString()
-    .split("T")[0];
+
   return (
     <Container>
       <Header as="h2" color="blue" icon textAlign="center">
@@ -71,6 +76,7 @@ const Landing = () => {
                   type="date"
                   name="fechaInicio"
                   max={maxFechaInicio}
+                  min={minFechaInicio}
                   onChange={modificaFechaInicio}
                 />
               </Card.Content>
@@ -83,6 +89,7 @@ const Landing = () => {
                   type="date"
                   name="fechaFinal"
                   max={maxFechaFin}
+                  min={minFechaFin}
                   onChange={modificaFechaFinal}
                 />
               </Card.Content>
