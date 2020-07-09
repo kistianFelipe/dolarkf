@@ -11,7 +11,6 @@ import {
 } from "semantic-ui-react";
 
 const Dolar = (props) => {
-  // apiKey: '9c84db4d447c80c74961a72245371245cb7ac15f'
   let max = 0;
   let min = 0;
   let prom = 0;
@@ -55,7 +54,7 @@ const Dolar = (props) => {
     let ano = fechaActual.getFullYear();
     let anoFinal = ano - 1;
     let fechaInicial = anoFinal + mes + dia;
-    const apiKey = "9c84db4d447c80c74961a72245371245cb7ac15f";
+    const apiKey = "aca va la api key";
     let url = null;
     if (primeraCarga === true) {
       url = `https://api.sbif.cl/api-sbifv3/recursos_api/dolar/periodo/${anoFinal}/${mes}/dias_i/${dia}/${ano}/${mes}/dias_f/${dia}?apikey=${apiKey}&formato=json`;
